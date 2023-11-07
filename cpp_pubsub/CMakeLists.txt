@@ -11,6 +11,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(cpp_pubsub_msgs REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -18,10 +19,10 @@ find_package(std_msgs REQUIRED)
 
 
 add_executable(onetalker src/publisher_member_function.cpp)
-ament_target_dependencies(onetalker rclcpp std_msgs)
+ament_target_dependencies(onetalker rclcpp cpp_pubsub_msgs)
 
 add_executable(onelistener src/subscriber_member_function.cpp)
-ament_target_dependencies(onelistener rclcpp std_msgs)
+ament_target_dependencies(onelistener rclcpp cpp_pubsub_msgs)
 
 install(TARGETS
   onetalker
@@ -40,4 +41,5 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()

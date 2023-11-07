@@ -12,28 +12,64 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * @file subscriber_member_function.cpp
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-11-07
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include <functional>
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#include "cpp_pubsub_msgs/msg/tutorial_string.hpp"
 
 using std::placeholders::_1;
 
+/**
+ * @brief ROS Node Class that demostrates the subscriber functionality
+ * 
+ */
 class MinimalSubscriber : public rclcpp::Node {
  public:
   MinimalSubscriber() : Node("minimal_subscriber") {
-    subscription_ = this->create_subscription<std_msgs::msg::String>(
-        "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+
+    /**
+     * @brief Create the subscription to the "topic"
+     * 
+     */
+    subscription_ = this->create_subscription<cpp_pubsub_msgs::msg::TutorialString>(
+        "custom_message", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
   }
 
  private:
-  void topic_callback(const std_msgs::msg::String& msg) const {
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
+ /**
+  * @brief Create a callback for the topic
+  * 
+  * @param msg 
+  */
+  void topic_callback(const cpp_pubsub_msgs::msg::TutorialString& msg) const {
+    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.text.c_str());
   }
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+
+  /**
+   * @brief Pointer for adding subscription
+   * 
+   */
+  rclcpp::Subscription<cpp_pubsub_msgs::msg::TutorialString>::SharedPtr subscription_;
 };
 
+/**
+ * @brief Main funciton  for the subscriber node
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char* argv[]) {
   rclcpp::init(argc, argv);
   rclcpp::spin(std::make_shared<MinimalSubscriber>());
