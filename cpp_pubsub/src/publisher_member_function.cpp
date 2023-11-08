@@ -43,12 +43,12 @@ using namespace std::chrono_literals;
 class MinimalPublisher : public rclcpp::Node {
  public:
   MinimalPublisher() : Node("minimal_publisher"), count_(0) {
-
     /**
      * @brief Create a publisher to the topic "topic"
      * 
      */
-    publisher_ = this->create_publisher<cpp_pubsub_msgs::msg::TutorialString>("custom_message", 10);
+    publisher_ = this->create_publisher<cpp_pubsub_msgs::msg
+                            ::TutorialString>("custom_message", 10);
 
     /**
      * @brief Create timer to publish the message at periodic intervals
@@ -64,7 +64,6 @@ class MinimalPublisher : public rclcpp::Node {
   * 
   */
   void timer_callback() {
-
     /**
      * @brief Build the message
      * 

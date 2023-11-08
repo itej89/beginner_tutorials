@@ -1,6 +1,0 @@
-tej@tejpc:~/Documents/Maryland/Semester4/808x/HW/Nov7/ws/beginner_tutorials/cpp_pubsub$ cppcheck --enable=all --std=c++17    ./src/*.cpp 
-Checking src/publisher_member_function.cpp ...
-1/2 files checked 56% done
-Checking src/subscriber_member_function.cpp ...
-2/2 files checked 100% done
-nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]

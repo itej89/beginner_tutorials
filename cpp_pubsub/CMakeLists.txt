@@ -7,6 +7,16 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+
+# clangd support 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+execute_process(COMMAND "rm" "-f" "${CMAKE_SOURCE_DIR}/compile_commands.json")
+execute_process(COMMAND "ln" "-s" "-r" "${CMAKE_BINARY_DIR}/compile_commands.json" "${CMAKE_SOURCE_DIR}/")
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -17,17 +27,25 @@ find_package(cpp_pubsub_msgs REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-
+# Build talker node.
 add_executable(onetalker src/publisher_member_function.cpp)
 ament_target_dependencies(onetalker rclcpp cpp_pubsub_msgs)
 
+# Build listener node.
 add_executable(onelistener src/subscriber_member_function.cpp)
 ament_target_dependencies(onelistener rclcpp cpp_pubsub_msgs)
 
+# Install targets.
 install(TARGETS
   onetalker
   onelistener
   DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files.
+install(DIRECTORY
+launch
+DESTINATION share/${PROJECT_NAME}/
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

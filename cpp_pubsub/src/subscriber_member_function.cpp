@@ -37,13 +37,13 @@ using std::placeholders::_1;
 class MinimalSubscriber : public rclcpp::Node {
  public:
   MinimalSubscriber() : Node("minimal_subscriber") {
-
     /**
      * @brief Create the subscription to the "topic"
      * 
      */
-    subscription_ = this->create_subscription<cpp_pubsub_msgs::msg::TutorialString>(
-        "custom_message", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+    subscription_ = this->create_subscription<cpp_pubsub_msgs::msg
+    ::TutorialString>("custom_message", 10, std::bind(
+                      &MinimalSubscriber::topic_callback, this, _1));
   }
 
  private:
@@ -60,7 +60,8 @@ class MinimalSubscriber : public rclcpp::Node {
    * @brief Pointer for adding subscription
    * 
    */
-  rclcpp::Subscription<cpp_pubsub_msgs::msg::TutorialString>::SharedPtr subscription_;
+  rclcpp::Subscription<cpp_pubsub_msgs::msg
+    ::TutorialString>::SharedPtr subscription_;
 };
 
 /**
