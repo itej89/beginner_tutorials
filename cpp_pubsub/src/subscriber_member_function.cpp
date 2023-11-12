@@ -14,7 +14,7 @@
 
 /**
  * @file subscriber_member_function.cpp
- * @author your name (you@domain.com)
+ * @author Tej Kiran (itej89@gmail.com)
  * @brief 
  * @version 0.1
  * @date 2023-11-07
