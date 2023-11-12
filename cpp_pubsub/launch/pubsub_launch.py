@@ -5,6 +5,12 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package="cpp_pubsub",
+            executable="oneservice",
+            name="oneservice",
+        ),
+
+        Node(
+            package="cpp_pubsub",
             executable="onetalker",
             name="onetalker",
         ),
