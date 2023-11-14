@@ -17,7 +17,7 @@
  * @author Tej Kiran (itej89@gmail.com)
  * @brief This file contains an example node that demostrates the publisher
  * functionality of ROS2
- * @version 0.1
+ * @version 0.2
  * @date 2023-11-07
  *
  * @copyright Copyright (c) 2023
