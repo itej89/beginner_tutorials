@@ -27,6 +27,10 @@ find_package(cpp_pubsub_msgs REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+# Build service node.
+add_executable(oneservice src/script_service_node.cpp)
+ament_target_dependencies(oneservice rclcpp cpp_pubsub_msgs)
+
 # Build talker node.
 add_executable(onetalker src/publisher_member_function.cpp)
 ament_target_dependencies(onetalker rclcpp cpp_pubsub_msgs)
@@ -39,6 +43,7 @@ ament_target_dependencies(onelistener rclcpp cpp_pubsub_msgs)
 install(TARGETS
   onetalker
   onelistener
+  oneservice
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files.

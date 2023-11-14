@@ -18,8 +18,13 @@ set(msg_files
 "msg/TutorialString.msg"
 )
 
+set(srv_files
+"srv/TutorialService.srv"
+)
+
 rosidl_generate_interfaces(${PROJECT_NAME}
 ${msg_files}
+${srv_files}
 
 DEPENDENCIES
 builtin_interfaces

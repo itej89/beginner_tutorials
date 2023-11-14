@@ -2,8 +2,8 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>cpp_pubsub_msgs</name>
-  <version>1.0.0</version>
-  <description>This package contains custom string message for cpp_pubsub</description>
+  <version>1.1.0</version>
+  <description>This package contains custom string message and a custom service for cpp_pubsub</description>
   <maintainer email="itej89@gmail.com">root</maintainer>
   <license>Apache-2.0</license>
 
