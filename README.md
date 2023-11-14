@@ -148,6 +148,13 @@
 - ### Results
 ![alt text](./result_images/launch_results.png)
 
+### Set ROS2 parameter
+- ### Instructions to modify publisher rate
+```bash
+# To change publisher rate, use the pub_rate(units in milliseconds) launch argument as shown below
+ros2 launch cpp_pubsub pubsub_launch.py log_level:='info' pub_rate:=1000
+```
+
 ### Set and verfiy log level
 
 - ### Instructions to modify log level

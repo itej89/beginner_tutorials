@@ -53,6 +53,7 @@ class MinimalPublisher : public rclcpp::Node {
 
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Initializing MinimalPublisher.");
 
+
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Create Publisher Instance");
     /**
      * @brief Create a publisher to the topic "topic"
@@ -61,6 +62,7 @@ class MinimalPublisher : public rclcpp::Node {
     publisher_ = this->create_publisher<cpp_pubsub_msgs::msg ::TutorialString>(
         "custom_message", 10);
 
+
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Create Service Instance");
     /**
      * @brief Create a service client for "make_script" service
@@ -68,13 +70,27 @@ class MinimalPublisher : public rclcpp::Node {
      */
     service_client_ = this->create_client<cpp_pubsub_msgs::srv::TutorialService>("make_script");
 
+
+    /**
+     * @brief Declare the publisher rate as parameter
+     * 
+     */
+    this->declare_parameter("pub_rate", 500);   
+
+    /**
+     * @brief Read the publish rate
+     * 
+     */
+    int pub_rate = this->get_parameter("pub_rate").as_int();
+   
+
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Create Timer Instance");
     /**
      * @brief Create timer to publish the message at periodic intervals
      *
      */
     timer_ = this->create_wall_timer(
-        500ms, std::bind(&MinimalPublisher::timer_callback, this));
+         std::chrono::milliseconds(pub_rate), std::bind(&MinimalPublisher::timer_callback, this));
 
 
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Calling movie dialogue service..");
@@ -83,6 +99,7 @@ class MinimalPublisher : public rclcpp::Node {
       "With great power comes great responsibility!!");
 
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Service Returned : "<<script_message);
+
 
 
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Initialization of MinimalPublisher done.");
