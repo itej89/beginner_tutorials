@@ -37,10 +37,7 @@ using std::placeholders::_1;
 class MinimalSubscriber : public rclcpp::Node {
  public:
   MinimalSubscriber() : Node("minimal_subscriber") {
-
-
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Initializing MinimalSubscriber.");
-
 
     RCLCPP_DEBUG_STREAM(this->get_logger(), "Created subscriber");
     /**
@@ -51,8 +48,9 @@ class MinimalSubscriber : public rclcpp::Node {
         this->create_subscription<cpp_pubsub_msgs::msg ::TutorialString>(
             "custom_message", 10,
             std::bind(&MinimalSubscriber::topic_callback, this, _1));
-            
-    RCLCPP_DEBUG_STREAM(this->get_logger(), "Initialization of MinimalSubscriber done.");
+
+    RCLCPP_DEBUG_STREAM(this->get_logger(),
+                        "Initialization of MinimalSubscriber done.");
   }
 
  private:
@@ -62,7 +60,7 @@ class MinimalSubscriber : public rclcpp::Node {
    * @param msg
    */
   void topic_callback(const cpp_pubsub_msgs::msg::TutorialString& msg) const {
-    RCLCPP_INFO_STREAM(this->get_logger(), "I heard: "<< msg.text);
+    RCLCPP_INFO_STREAM(this->get_logger(), "I heard: " << msg.text);
   }
 
   /**

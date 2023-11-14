@@ -32,9 +32,9 @@
 
 /**
  * @brief the call back funciton for the service
- * 
+ *
  * @param request {consists of two inputs string}
- *  1. character : name of the character 
+ *  1. character : name of the character
  *  2. dialogue  : dialogue of the character
  * @param response {consists of one output string}
  *  1. script : <character>+" told : "+<dialogue>
@@ -43,52 +43,52 @@ void make_script(
     const std::shared_ptr<cpp_pubsub_msgs::srv::TutorialService::Request>
         request,
     std::shared_ptr<cpp_pubsub_msgs::srv::TutorialService::Response> response) {
-        
   /**
    * @brief generate the script line
-   * 
+   *
    */
   response->script = request->character + " told : " + request->dialogue;
 
   RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"),
-    "Incoming request\ncharacter: " <<  request->character <<
-    " dialogue: %s" << request->dialogue);
-  RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"), 
-    "sending  back script line: [" << response->script << "]");
+                     "Incoming request\ncharacter: " << request->character
+                                                     << " dialogue: %s"
+                                                     << request->dialogue);
+  RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"),
+                     "sending  back script line: [" << response->script << "]");
 }
 
 /**
  * @brief Main funcction for the server node
- * 
- * @param argc 
- * @param argv 
- * @return int 
+ *
+ * @param argc
+ * @param argv
+ * @return int
  */
 int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
 
   /**
    * @brief Initialize the node
-   * 
+   *
    */
   std::shared_ptr<rclcpp::Node> node =
       rclcpp::Node::make_shared("make_script_server");
 
-/**
- * @brief Initialize service inside the node
- * 
- */
+  /**
+   * @brief Initialize service inside the node
+   *
+   */
   rclcpp::Service<cpp_pubsub_msgs::srv::TutorialService>::SharedPtr
       make_script_service =
           node->create_service<cpp_pubsub_msgs::srv::TutorialService>(
               "make_script", &make_script);
 
   RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"),
-              "Ready to create movie script lines.");
+                     "Ready to create movie script lines.");
 
   /**
    * @brief spin the ROS2
-   * 
+   *
    */
   rclcpp::spin(node);
   rclcpp::shutdown();

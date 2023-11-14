@@ -45,7 +45,7 @@
 ## Instructions to run static code analysis:
  ```bash
  # Navigate to src folder in package
- cd <ros2_workspace>/src/beginner_tutorials/src
+ cd beginner_tutorials
 
  # run the following command
  cppcheck --enable=all --std=c++17 ./cpp_pubsub/src/*.cpp --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression > ./results/cppcheckreport
@@ -58,7 +58,7 @@
  
 ```bash
 # Navigate to source folder
-  cd beginner_tutorials/cpp_pubsub/src
+  cd beginner_tutorials
 
 #  run the following command
  cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order ./cpp_pubsub/src/*.cpp   > ./results/cpplintreport > ./results/cpplintreport
