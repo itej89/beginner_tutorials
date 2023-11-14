@@ -50,10 +50,10 @@ void make_script(
   response->script = request->character + " told : " + request->dialogue;
 
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"),
-              "Incoming request\na: %s"
-              " b: %s",
+              "Incoming request\ncharacter: %s"
+              " dialogue: %s",
               request->character.c_str(), request->dialogue.c_str());
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%s]",
+  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back script line: [%s]",
               response->script.c_str());
 }
 
