@@ -25,6 +25,7 @@
  */
 
 #include <memory>
+#include <rclcpp/logging.hpp>
 
 #include "cpp_pubsub_msgs/srv/tutorial_service.hpp"
 #include "rclcpp/rclcpp.hpp"
@@ -42,19 +43,18 @@ void make_script(
     const std::shared_ptr<cpp_pubsub_msgs::srv::TutorialService::Request>
         request,
     std::shared_ptr<cpp_pubsub_msgs::srv::TutorialService::Response> response) {
-
+        
   /**
    * @brief generate the script line
    * 
    */
   response->script = request->character + " told : " + request->dialogue;
 
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"),
-              "Incoming request\ncharacter: %s"
-              " dialogue: %s",
-              request->character.c_str(), request->dialogue.c_str());
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back script line: [%s]",
-              response->script.c_str());
+  RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"),
+    "Incoming request\ncharacter: " <<  request->character <<
+    " dialogue: %s" << request->dialogue);
+  RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"), 
+    "sending  back script line: [" << response->script << "]");
 }
 
 /**
@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
           node->create_service<cpp_pubsub_msgs::srv::TutorialService>(
               "make_script", &make_script);
 
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"),
+  RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"),
               "Ready to create movie script lines.");
 
   /**

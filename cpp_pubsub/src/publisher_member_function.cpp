@@ -50,6 +50,10 @@ using namespace rclcpp;
 class MinimalPublisher : public rclcpp::Node {
  public:
   MinimalPublisher() : Node("minimal_publisher"), count_(0) {
+
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Initializing MinimalPublisher.");
+
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Create Publisher Instance");
     /**
      * @brief Create a publisher to the topic "topic"
      *
@@ -57,14 +61,14 @@ class MinimalPublisher : public rclcpp::Node {
     publisher_ = this->create_publisher<cpp_pubsub_msgs::msg ::TutorialString>(
         "custom_message", 10);
 
-
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Create Service Instance");
     /**
-     * @brief Create a service client for "make_script" sedvice
+     * @brief Create a service client for "make_script" service
      * 
      */
     service_client_ = this->create_client<cpp_pubsub_msgs::srv::TutorialService>("make_script");
 
-
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Create Timer Instance");
     /**
      * @brief Create timer to publish the message at periodic intervals
      *
@@ -73,8 +77,15 @@ class MinimalPublisher : public rclcpp::Node {
         500ms, std::bind(&MinimalPublisher::timer_callback, this));
 
 
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Calling movie dialogue service..");
+
     script_message = get_movie_dialogue("Uncle Ben", 
       "With great power comes great responsibility!!");
+
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Service Returned : "<<script_message);
+
+
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Initialization of MinimalPublisher done.");
   }
 
  private:
@@ -99,7 +110,7 @@ class MinimalPublisher : public rclcpp::Node {
      * 
      */
     if (!this->service_client_->wait_for_service(4s)) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, skipping the message publish...");
+      RCLCPP_ERROR_STREAM(this->get_logger(), "service not available, skipping the message publish...");
     }
     else
     { 
@@ -125,10 +136,15 @@ class MinimalPublisher : public rclcpp::Node {
         FutureReturnCode::SUCCESS)
       {
         script_line = result.get()->script;
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Script result: %s", script_line.c_str());
+
+        if (script_line == "") {
+             RCLCPP_WARN_STREAM(this->get_logger(), "Service returned empty result!!");
+        }
+
+        RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"), "Script result: "<< script_line);
       }
       else {
-        RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service movie_script");
+        RCLCPP_FATAL_STREAM(rclcpp::get_logger("rclcpp"), "Failed to call service movie_script");
       }
     }
 
@@ -144,10 +160,12 @@ class MinimalPublisher : public rclcpp::Node {
      * @brief Build the message
      *
      */
+    RCLCPP_DEBUG_STREAM(this->get_logger(), "Publisher periodic timer callback hit!!");
+
     auto message = cpp_pubsub_msgs::msg::TutorialString();
 
     if (!this->service_client_->wait_for_service(1s)) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, skipping the message publish...");
+      RCLCPP_WARN_STREAM(this->get_logger(), "service not available, skipping the message publish...");
     }
     else
     {
@@ -158,7 +176,7 @@ class MinimalPublisher : public rclcpp::Node {
        * @brief Publish the message
        *
        */
-      RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.text.c_str());
+      RCLCPP_INFO_STREAM(this->get_logger(), "Publishing: " << message.text);
       publisher_->publish(message);
     }
   }
@@ -204,7 +222,7 @@ class MinimalPublisher : public rclcpp::Node {
  */
 int main(int argc, char* argv[]) {
   rclcpp::init(argc, argv);
-  
+
   std::shared_ptr<MinimalPublisher> node_shared  
             = std::make_shared<MinimalPublisher>();
 

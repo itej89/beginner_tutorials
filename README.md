@@ -148,6 +148,23 @@
 - ### Results
 ![alt text](./result_images/launch_results.png)
 
+### Set and verfiy log level
+
+- ### Instructions to modify log level
+  By default the launch file invokes nodes with "info" log level. This can be be modied by providing the 
+  "log_level" launch argument
+
+```bash
+# Pass log level as launch argument
+ros2 launch cpp_pubsub pubsub_launch.py log_level:='debug'
+
+# Allowed log_levels are as follows
+#   ['info', 'debug', 'warn', 'error', 'fatal']
+```
+- ### Results
+![alt text](./result_images/rqt_log_level.png)
+
+
 ## Dependency Installation: 
 - ROS 2 Humble:
   - Follow the below website instructions to install ROS 2 Humble based on your Ubuntu version
