@@ -180,7 +180,6 @@ class MinimalPublisher : public rclcpp::Node {
    * 
    */
   void publish_transform() {
-
     /**
      * @brief Create geometry message
      * 
@@ -209,7 +208,7 @@ class MinimalPublisher : public rclcpp::Node {
      * 
      */
     tf2::Quaternion q;
-    q.setRPY(0, 0, 1.57 );
+    q.setRPY(0, 0, 1.57);
     t.transform.rotation.x = q.x();
     t.transform.rotation.y = q.y();
     t.transform.rotation.z = q.z();
@@ -240,8 +239,10 @@ class MinimalPublisher : public rclcpp::Node {
       RCLCPP_WARN_STREAM(
           this->get_logger(),
           "service not available, publishing default message...");
-            message.text = "With great power comes great responsibility!! " + std::to_string(count_++);
-            RCLCPP_INFO_STREAM(this->get_logger(), "Publishing: " << message.text);
+            message.text = "With great power comes great responsibility!! "\
+             + std::to_string(count_++);
+            RCLCPP_INFO_STREAM(this->get_logger(), "Publishing: "\
+                                               << message.text);
             publisher_->publish(message);
     } else {
       message.text = this->script_message + " " + std::to_string(count_++);
@@ -260,7 +261,6 @@ class MinimalPublisher : public rclcpp::Node {
    *
    */
   void timer_callback() {
-
     /**
      * @brief Construct a new publish custom message
      * 
@@ -272,7 +272,6 @@ class MinimalPublisher : public rclcpp::Node {
      * 
      */
     publish_transform();
-
   }
 
   /**

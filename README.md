@@ -48,7 +48,7 @@
  cd beginner_tutorials
 
  # run the following command
- cppcheck --enable=all --std=c++17 ./cpp_pubsub/src/*.cpp --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression > ./results/cppcheckreport
+ cppcheck --enable=all --std=c++17 ./src/cpp_pubsub/src/*.cpp --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression > ./results/cppcheckreport
 
  # The report can be viewed at ./beginner_tutorials/results/cppcheckreport
 
@@ -58,10 +58,10 @@
  
 ```bash
 # Navigate to source folder
-  cd beginner_tutorials
+  cd beginner_tutorials/src
 
 #  run the following command
- cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order ./cpp_pubsub/src/*.cpp   > ./results/cpplintreport > ./results/cpplintreport
+ cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order ./src/cpp_pubsub/src/*.cpp   > ./results/cpplintreport > ./results/cpplintreport
 
  # The report can be viewed at ./beginner_tutorials/results/cpplintreport
  ```

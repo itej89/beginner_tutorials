@@ -1,0 +1,3 @@
+Checking src/cpp_pubsub/test/basic_test.cpp ...
+src/cpp_pubsub/test/basic_test.cpp:39:0: style: The function 'SetUp' is never used. [unusedFunction]
+src/cpp_pubsub/test/basic_test.cpp:53:0: style: The function 'TearDown' is never used. [unusedFunction]
