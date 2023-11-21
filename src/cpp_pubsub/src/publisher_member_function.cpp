@@ -82,7 +82,7 @@ class MinimalPublisher : public rclcpp::Node {
      * @brief Declare the publisher rate as parameter
      *
      */
-    this->declare_parameter("pub_rate", 500);
+    this->declare_parameter("pub_rate", 200);
 
     /**
      * @brief Read the publish rate
@@ -131,7 +131,7 @@ class MinimalPublisher : public rclcpp::Node {
      * @brief wait for the service avaialbility
      *
      */
-    if (!this->service_client_->wait_for_service(4s)) {
+    if (!this->service_client_->wait_for_service(1s)) {
       RCLCPP_ERROR_STREAM(
           this->get_logger(),
           "service not available, skipping the message publish...");
@@ -236,10 +236,13 @@ class MinimalPublisher : public rclcpp::Node {
 
     auto message = cpp_pubsub_msgs::msg::TutorialString();
 
-    if (!this->service_client_->wait_for_service(1s)) {
+    if (!this->service_client_->wait_for_service(100ms)) {
       RCLCPP_WARN_STREAM(
           this->get_logger(),
-          "service not available, skipping the message publish...");
+          "service not available, publishing default message...");
+            message.text = "With great power comes great responsibility!! " + std::to_string(count_++);
+            RCLCPP_INFO_STREAM(this->get_logger(), "Publishing: " << message.text);
+            publisher_->publish(message);
     } else {
       message.text = this->script_message + " " + std::to_string(count_++);
 

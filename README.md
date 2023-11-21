@@ -89,7 +89,7 @@
 # Source ros environemnt
   source /opt/ros/humble/setup.bash
 # Source project
-  source /opt/ros/humble/setup.bash
+  source ./install/setup.bash
 # run talker node
   ros2 run cpp_pubsub onetalker
 
@@ -102,7 +102,7 @@
   # Source ros environemnt
     source /opt/ros/humble/setup.bash
   # Source project
-    source /opt/ros/humble/setup.bash
+    source ./install/setup.bash
   # view the frames over console
     ros2 run tf2_ros tf2_echo world talk
   # save frames to pdf
@@ -113,7 +113,7 @@
 # Source ros environemnt
   source /opt/ros/humble/setup.bash
 # Source project
-  source /opt/ros/humble/setup.bash
+  source ./install/setup.bash
 # run talker node
   ros2 run cpp_pubsub onelistener
 ```
@@ -127,7 +127,7 @@
   # Source ros environemnt
     source /opt/ros/humble/setup.bash
   # Source project
-   source /opt/ros/humble/setup.bash
+    source ./install/setup.bash
   # run talker node
    ros2 run cpp_pubsub oneservice
 
@@ -139,7 +139,7 @@
   # Source ros environemnt
     source /opt/ros/humble/setup.bash
   # Source project
-    source /opt/ros/humble/setup.bash
+    source ./install/setup.bash
   # rcall one service as below
     ros2 service call /make_script      cpp_pubsub_msgs/srv/TutorialService "{character: 'Uncle Ben', dialogue: 'With great power comes great responsibility.'}"
 ```
@@ -164,7 +164,7 @@
 # Source ros environemnt
   source /opt/ros/humble/setup.bash
 # Source project
-  source /opt/ros/humble/setup.bash
+  source ./install/setup.bash
 # run talker node
   ros2 launch cpp_pubsub pubsub_launch.py
   ```
@@ -191,8 +191,22 @@ ros2 launch cpp_pubsub pubsub_launch.py log_level:='debug'
 # Allowed log_levels are as follows
 #   ['info', 'debug', 'warn', 'error', 'fatal']
 ```
-- ### Results
+- ### Log level Results
 ![alt text](./result_images/rqt_log_level.png)
+
+### Run and view gtest results
+- ### Instructions to run test cases
+```bash
+colcon test --packages-select cpp_pubsub
+```
+- ### Instructions to view test results
+```bash
+cat log/latest_test/minimal_integration_test/stdout_stderr.log
+```
+
+- ### GTest Results
+![alt text](./result_images/test_log.png)
+
 
 
 ## Dependency Installation: 
@@ -200,3 +214,7 @@ ros2 launch cpp_pubsub pubsub_launch.py log_level:='debug'
   - Follow the below website instructions to install ROS 2 Humble based on your Ubuntu version
     - Ubuntu 22.04:
       - https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html#install-ros-2-packages
+
+## References
+- Gtest integration into ROS2
+  - https://github.com/TommyChangUMD/minimal-integration-test
