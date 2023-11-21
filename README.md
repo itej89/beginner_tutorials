@@ -92,6 +92,21 @@
   source /opt/ros/humble/setup.bash
 # run talker node
   ros2 run cpp_pubsub onetalker
+
+
+---------------------------------------------
+# Verify tf2 tree
+---------------------------------------------
+# Open a second terminal window
+-------------------------------
+  # Source ros environemnt
+    source /opt/ros/humble/setup.bash
+  # Source project
+    source /opt/ros/humble/setup.bash
+  # view the frames over console
+    ros2 run tf2_ros tf2_echo world talk
+  # save frames to pdf
+    ros2 run tf2_tools view_frames
 ```
 - ### Running subscriber node
 ```bash
@@ -127,21 +142,6 @@
     source /opt/ros/humble/setup.bash
   # rcall one service as below
     ros2 service call /make_script      cpp_pubsub_msgs/srv/TutorialService "{character: 'Uncle Ben', dialogue: 'With great power comes great responsibility.'}"
-
-
----------------------------------------------
-# Verify tf2 tree
----------------------------------------------
-# Open a second terminal window
--------------------------------
-  # Source ros environemnt
-    source /opt/ros/humble/setup.bash
-  # Source project
-    source /opt/ros/humble/setup.bash
-  # view the frames over console
-    ros2 run tf2_ros tf2_echo world talk
-  # save frames to pdf
-    ros2 run tf2_tools view_frames
 ```
 
 
