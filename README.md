@@ -127,12 +127,35 @@
     source /opt/ros/humble/setup.bash
   # rcall one service as below
     ros2 service call /make_script      cpp_pubsub_msgs/srv/TutorialService "{character: 'Uncle Ben', dialogue: 'With great power comes great responsibility.'}"
+
+
+---------------------------------------------
+# Verify tf2 tree
+---------------------------------------------
+# Open a second terminal window
+-------------------------------
+  # Source ros environemnt
+    source /opt/ros/humble/setup.bash
+  # Source project
+    source /opt/ros/humble/setup.bash
+  # view the frames over console
+    ros2 run tf2_ros tf2_echo world talk
+  # save frames to pdf
+    ros2 run tf2_tools view_frames
 ```
+
+
+
 - ### Screenshot of the ROS2 service demostration over console
 ![alt text](./result_images/service_test.png)
 
 - ### Screenshot of the publisher subscriber nodes communicating over ROS2
 ![alt text](./result_images/node_results.png)
+
+
+- ### Screenshot of the ROS2 tf2 demostration over console
+![alt text](./result_images/tf2_echo.png)
+
 
 ### Running launch file
       The service, publisher, and subscriber nodes can also be launched from the launch file using the below steps.
