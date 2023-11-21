@@ -21,7 +21,12 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(cpp_pubsub_msgs REQUIRED)
+
+
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -33,7 +38,7 @@ ament_target_dependencies(oneservice rclcpp cpp_pubsub_msgs)
 
 # Build talker node.
 add_executable(onetalker src/publisher_member_function.cpp)
-ament_target_dependencies(onetalker rclcpp cpp_pubsub_msgs)
+ament_target_dependencies(onetalker rclcpp cpp_pubsub_msgs geometry_msgs tf2 tf2_ros)
 
 # Build listener node.
 add_executable(onelistener src/subscriber_member_function.cpp)
