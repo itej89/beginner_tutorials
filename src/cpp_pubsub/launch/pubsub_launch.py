@@ -4,6 +4,7 @@ from launch.actions import ExecuteProcess
 from launch.substitutions import LaunchConfiguration
 from launch.substitutions import TextSubstitution
 from launch_ros.actions import Node
+from launch.conditions import IfCondition
 
 
 def generate_launch_description():
@@ -25,6 +26,20 @@ def generate_launch_description():
             description="Logging level"
         ),
 
+       # Launch argument that enables or disables ros2 bag recording
+       DeclareLaunchArgument(
+           "is_record_bag", 
+            default_value='false',
+            description='Determines if ros bag record should be enabled.'
+        ),
+
+        # Launch ros2 bag recorder
+        ExecuteProcess(
+            cmd=['ros2', 'bag', 'record', '-a', '-o', 'rosbag/talker_demo'],
+            output='screen',
+            condition=IfCondition(LaunchConfiguration('is_record_bag'))
+        ),
+
         # Launch oneservice node
         Node(
             package="cpp_pubsub",
@@ -33,7 +48,7 @@ def generate_launch_description():
             arguments=['--ros-args', '--log-level', LaunchConfiguration('log_level')]
         ),
 
-        # Laucnh onetalker node
+        # Launch onetalker node
         Node(
             package="cpp_pubsub",
             executable="onetalker",
@@ -42,7 +57,7 @@ def generate_launch_description():
             parameters=[{"pub_rate": LaunchConfiguration("pub_rate")}]
         ),
 
-        # Laucnh onelistener node
+        # Launch onelistener node
         Node(
             package="cpp_pubsub",
             executable="onelistener",

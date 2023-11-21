@@ -1,6 +1,7 @@
 install/
 log/
 build/
+rosbag/
 
 # Ignore generated docs
 *.dox
