@@ -33,9 +33,16 @@ def generate_launch_description():
             description='Determines if ros bag record should be enabled.'
         ),
 
+       # Launch argument that sets the ros2 bag recording path
+       DeclareLaunchArgument(
+           "bag_file_path", 
+            default_value='rosbag/talker',
+            description='Determines the location to save the bag file.'
+        ),
+
         # Launch ros2 bag recorder
         ExecuteProcess(
-            cmd=['ros2', 'bag', 'record', '-a', '-o', 'rosbag/talker_demo'],
+            cmd=['ros2', 'bag', 'record', '-a', '-o', LaunchConfiguration('bag_file_path')],
             output='screen',
             condition=IfCondition(LaunchConfiguration('is_record_bag'))
         ),

@@ -82,7 +82,7 @@
 
 
 ## How to run the demo
-### Running individual nodes
+### 1. Running individual nodes
     Individual nodes can be invoked by follwoing the below steps.
 - ### Running publisher node
 ```bash
@@ -157,7 +157,7 @@
 ![alt text](./result_images/tf2_echo.png)
 
 
-### Running launch file
+### 2. Running launch file
       The service, publisher, and subscriber nodes can also be launched from the launch file using the below steps.
 - ### Instructions
 ```bash
@@ -171,14 +171,14 @@
 - ### Results
 ![alt text](./result_images/launch_results.png)
 
-### Set ROS2 parameter
+### 3. Set ROS2 node parameters though launch file
 - ### Instructions to modify publisher rate
 ```bash
 # To change publisher rate, use the pub_rate(units in milliseconds) launch argument as shown below
 ros2 launch cpp_pubsub pubsub_launch.py log_level:='info' pub_rate:=1000
 ```
 
-### Set and verfiy log level
+### 4. Set and verfiy log level
 
 - ### Instructions to modify log level
   By default the launch file invokes nodes with "info" log level. This can be be modied by providing the 
@@ -194,9 +194,14 @@ ros2 launch cpp_pubsub pubsub_launch.py log_level:='debug'
 - ### Log level Results
 ![alt text](./result_images/rqt_log_level.png)
 
-### Run and view gtest results
+### 5. Run and view gtest results
 - ### Instructions to run test cases
 ```bash
+# Source ros environemnt
+  source /opt/ros/humble/setup.bash
+# Source project
+  source ./install/setup.bash
+  # Run test cases in cpp_pubsub
 colcon test --packages-select cpp_pubsub
 ```
 - ### Instructions to view test results
@@ -206,6 +211,18 @@ cat log/latest_test/minimal_integration_test/stdout_stderr.log
 
 - ### GTest Results
 ![alt text](./result_images/test_log.png)
+
+### 6. Recording topics through ros2 bag
+- ### Instructions to launch with ros2 bag
+```bash
+  # Source ros environemnt
+  source /opt/ros/humble/setup.bash
+  # Source project
+  source ./install/setup.bashs
+  # Launch file options to enable ros2 bag recording
+  ros2 launch cpp_pubsub pubsub_launch.py  is_record_bag:=true  bag_file_path:=rosbag/talker
+
+```
 
 
 
