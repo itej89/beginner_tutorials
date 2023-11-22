@@ -222,6 +222,17 @@ cat log/latest_test/minimal_integration_test/stdout_stderr.log
   # Launch file options to enable ros2 bag recording
   ros2 launch cpp_pubsub pubsub_launch.py  is_record_bag:=true  bag_file_path:=rosbag/talker
 ```
+
+- ### Instructions to inspect ros2 bag
+```bash
+  # Source ros environemnt
+  source /opt/ros/humble/setup.bash
+  # Source project
+  source ./install/setup.bashs
+  # inspect ros2 bag file
+  ros2 bag info ./results/rosbag_recordings/talker/
+```
+
 - ### Instructions to launch ros2 bag playback
 ```bash
   # Source ros environemnt
@@ -231,6 +242,9 @@ cat log/latest_test/minimal_integration_test/stdout_stderr.log
   # Launch file to playback the bag-file and listener
   ros2 launch cpp_pubsub rosbag_replay_launch.py bag_file_path:=rosbag/talker
 ```
+
+- ### ros2 bag inspection results
+![alt text](./result_images/ros_bag_inspect.png)
 
 - ### ros2 bag playback results
 ![alt text](./result_images/ros2_bag_play.png)
