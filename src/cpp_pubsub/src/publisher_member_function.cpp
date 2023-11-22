@@ -32,6 +32,10 @@
 
 #include "cpp_pubsub_msgs/msg/tutorial_string.hpp"
 #include "cpp_pubsub_msgs/srv/tutorial_service.hpp"
+#include "geometry_msgs/msg/transform_stamped.hpp"
+#include "tf2/LinearMath/Quaternion.h"
+#include "tf2_ros/transform_broadcaster.h"
+
 #include "rclcpp/rclcpp.hpp"
 
 using namespace std::chrono_literals;
@@ -68,10 +72,17 @@ class MinimalPublisher : public rclcpp::Node {
             "make_script");
 
     /**
+     * @brief Create a tf braodcaster instance
+     * 
+     */
+    tf_broadcaster_ =
+      std::make_unique<tf2_ros::TransformBroadcaster>(*this);
+
+    /**
      * @brief Declare the publisher rate as parameter
      *
      */
-    this->declare_parameter("pub_rate", 500);
+    this->declare_parameter("pub_rate", 200);
 
     /**
      * @brief Read the publish rate
@@ -120,7 +131,7 @@ class MinimalPublisher : public rclcpp::Node {
      * @brief wait for the service avaialbility
      *
      */
-    if (!this->service_client_->wait_for_service(4s)) {
+    if (!this->service_client_->wait_for_service(1s)) {
       RCLCPP_ERROR_STREAM(
           this->get_logger(),
           "service not available, skipping the message publish...");
@@ -165,11 +176,57 @@ class MinimalPublisher : public rclcpp::Node {
   }
 
   /**
-   * @brief Timer callback that publishes messages periodically
-   *
+   * @brief Method publishes tranform from /world to /talk
+   * 
    */
-  void timer_callback() {
+  void publish_transform() {
     /**
+     * @brief Create geometry message
+     * 
+     */
+    geometry_msgs::msg::TransformStamped t;
+
+    /**
+     * @brief Set header frames and timestamp
+     *  parent frame : /world
+     *  child frame  : /talk
+     */
+    t.header.stamp = this->get_clock()->now();
+    t.header.frame_id = "world";
+    t.child_frame_id = "talk";
+
+    /**
+     * @brief Set translation as (10.0, 20.0, 0)
+     * 
+     */
+    t.transform.translation.x = 10.0;
+    t.transform.translation.y = 20.0;
+    t.transform.translation.z = 0.0;
+
+    /**
+     * @brief Set rotation as 90 deg yaw
+     * 
+     */
+    tf2::Quaternion q;
+    q.setRPY(0, 0, 1.57);
+    t.transform.rotation.x = q.x();
+    t.transform.rotation.y = q.y();
+    t.transform.rotation.z = q.z();
+    t.transform.rotation.w = q.w();
+
+    /**
+     * @brief Send the transform
+     * 
+     */
+    tf_broadcaster_->sendTransform(t);
+  }
+
+  /**
+   * @brief Method publishes custom script message
+   * 
+   */
+  void publish_message() {
+        /**
      * @brief Build the message
      *
      */
@@ -178,10 +235,15 @@ class MinimalPublisher : public rclcpp::Node {
 
     auto message = cpp_pubsub_msgs::msg::TutorialString();
 
-    if (!this->service_client_->wait_for_service(1s)) {
+    if (!this->service_client_->wait_for_service(100ms)) {
       RCLCPP_WARN_STREAM(
           this->get_logger(),
-          "service not available, skipping the message publish...");
+          "service not available, publishing default message...");
+            message.text = "With great power comes great responsibility!! "\
+             + std::to_string(count_++);
+            RCLCPP_INFO_STREAM(this->get_logger(), "Publishing: "\
+                                               << message.text);
+            publisher_->publish(message);
     } else {
       message.text = this->script_message + " " + std::to_string(count_++);
 
@@ -192,6 +254,24 @@ class MinimalPublisher : public rclcpp::Node {
       RCLCPP_INFO_STREAM(this->get_logger(), "Publishing: " << message.text);
       publisher_->publish(message);
     }
+  }
+
+  /**
+   * @brief Timer callback that publishes messages periodically
+   *
+   */
+  void timer_callback() {
+    /**
+     * @brief Construct a new publish custom message
+     * 
+     */
+    publish_message();
+
+    /**
+     * @brief Construct a new broadcast transform
+     * 
+     */
+    publish_transform();
   }
 
   /**
@@ -214,6 +294,12 @@ class MinimalPublisher : public rclcpp::Node {
       service_client_;
 
   /**
+   * @brief Pointer for the broadcaster
+   * 
+   */
+  std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+
+  /**
    * @brief Count to indientify the current message
    *
    */
@@ -225,6 +311,7 @@ class MinimalPublisher : public rclcpp::Node {
    */
   std::string script_message = "";
 };
+
 
 /**
  * @brief Main function for the publisher node

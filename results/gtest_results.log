@@ -1,0 +1,124 @@
+UpdateCTestConfiguration  from :/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/CTestConfiguration.ini
+Parse Config file:/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/CTestConfiguration.ini
+   Site: tejpc
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20231121-2145 - Experimental
+UpdateCTestConfiguration  from :/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/CTestConfiguration.ini
+Parse Config file:/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/CTestConfiguration.ini
+Test project /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: cpp_pubsub_test
+
+1: Test command: /usr/bin/python3.10 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cpp_pubsub_test.gtest.xml" "--package-name" "cpp_pubsub" "--output-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/ament_cmake_gtest/cpp_pubsub_test.txt" "--command" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/cpp_pubsub_test" "--gtest_output=xml:/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cpp_pubsub_test.gtest.xml"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub':
+1:  - /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/cpp_pubsub_test --gtest_output=xml:/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cpp_pubsub_test.gtest.xml
+1: [==========] Running 1 test from 1 test suite.
+1: [----------] Global test environment set-up.
+1: [----------] 1 test from TaskPlanningFixture
+1: [ RUN      ] TaskPlanningFixture.TrueIsTrueTest
+1: [INFO] [1700603129.501349207] [basic_test]: DONE WITH CONSTRUCTOR!!
+1: [INFO] [1700603130.766196398] [basic_test]: DONE WITH SETUP!!
+1: TEST BEGINNING!!
+1: [INFO] [1700603131.267159678] [basic_test]: I heard: 'With great power comes great responsibility!! 1'
+1: [INFO] [1700603131.767098726] [basic_test]: I heard: 'With great power comes great responsibility!! 2'
+1: [INFO] [1700603132.267420465] [basic_test]: I heard: 'With great power comes great responsibility!! 3'
+1: [INFO] [1700603132.767228460] [basic_test]: I heard: 'With great power comes great responsibility!! 4'
+1: [INFO] [1700603133.267145996] [basic_test]: I heard: 'With great power comes great responsibility!! 5'
+1: DONE WITH TEARDOWN
+1: [       OK ] TaskPlanningFixture.TrueIsTrueTest (4284 ms)
+1: [----------] 1 test from TaskPlanningFixture (4284 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 1 test from 1 test suite ran. (4284 ms total)
+1: [  PASSED  ] 1 test.
+1: DONE SHUTTING DOWN ROS
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cpp_pubsub_test.gtest.xml'
+1: -- run_test.py: verify result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cpp_pubsub_test.gtest.xml'
+1/6 Test #1: cpp_pubsub_test ..................   Passed    4.43 sec
+test 2
+    Start 2: cppcheck
+
+2: Test command: /usr/bin/python3.10 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cppcheck.xunit.xml" "--package-name" "cpp_pubsub" "--output-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/ament_cppcheck/cppcheck.txt" "--command" "/opt/ros/humble/bin/ament_cppcheck" "--xunit-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cppcheck.xunit.xml"
+2: Test timeout computed to be: 300
+2: -- run_test.py: invoking following command in '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/src/cpp_pubsub':
+2:  - /opt/ros/humble/bin/ament_cppcheck --xunit-file /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cppcheck.xunit.xml
+2: cppcheck 2.7 has known performance issues and therefore will not be used, set the AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS environment variable to override this.
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/cppcheck.xunit.xml'
+2/6 Test #2: cppcheck .........................   Passed    0.07 sec
+test 3
+    Start 3: flake8
+
+3: Test command: /usr/bin/python3.10 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/flake8.xunit.xml" "--package-name" "cpp_pubsub" "--output-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/ament_flake8/flake8.txt" "--command" "/opt/ros/humble/bin/ament_flake8" "--xunit-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/flake8.xunit.xml"
+3: Test timeout computed to be: 60
+3: -- run_test.py: invoking following command in '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/src/cpp_pubsub':
+3:  - /opt/ros/humble/bin/ament_flake8 --xunit-file /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/flake8.xunit.xml
+3: 
+3: 1 files checked
+3: No problems found
+3: 
+3: Checked files:
+3: 
+3: * ./launch/pubsub_launch.py
+3: -- run_test.py: return code 0
+3: -- run_test.py: verify result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/flake8.xunit.xml'
+3/6 Test #3: flake8 ...........................   Passed    0.12 sec
+test 4
+    Start 4: lint_cmake
+
+4: Test command: /usr/bin/python3.10 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/lint_cmake.xunit.xml" "--package-name" "cpp_pubsub" "--output-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/ament_lint_cmake/lint_cmake.txt" "--command" "/opt/ros/humble/bin/ament_lint_cmake" "--xunit-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/lint_cmake.xunit.xml"
+4: Test timeout computed to be: 60
+4: -- run_test.py: invoking following command in '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/src/cpp_pubsub':
+4:  - /opt/ros/humble/bin/ament_lint_cmake --xunit-file /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/lint_cmake.xunit.xml
+4: 
+4: No problems found
+4: -- run_test.py: return code 0
+4: -- run_test.py: verify result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/lint_cmake.xunit.xml'
+4/6 Test #4: lint_cmake .......................   Passed    0.07 sec
+test 5
+    Start 5: pep257
+
+5: Test command: /usr/bin/python3.10 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/pep257.xunit.xml" "--package-name" "cpp_pubsub" "--output-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/ament_pep257/pep257.txt" "--command" "/opt/ros/humble/bin/ament_pep257" "--xunit-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/pep257.xunit.xml"
+5: Test timeout computed to be: 60
+5: -- run_test.py: invoking following command in '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/src/cpp_pubsub':
+5:  - /opt/ros/humble/bin/ament_pep257 --xunit-file /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/pep257.xunit.xml
+5: checking ./launch/pubsub_launch.py
+5: No problems found
+5: -- run_test.py: return code 0
+5: -- run_test.py: verify result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/pep257.xunit.xml'
+5/6 Test #5: pep257 ...........................   Passed    0.09 sec
+test 6
+    Start 6: xmllint
+
+6: Test command: /usr/bin/python3.10 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/xmllint.xunit.xml" "--package-name" "cpp_pubsub" "--output-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/ament_xmllint/xmllint.txt" "--command" "/opt/ros/humble/bin/ament_xmllint" "--xunit-file" "/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/xmllint.xunit.xml"
+6: Test timeout computed to be: 60
+6: -- run_test.py: invoking following command in '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/src/cpp_pubsub':
+6:  - /opt/ros/humble/bin/ament_xmllint --xunit-file /home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/xmllint.xunit.xml
+6: File 'package.xml' is valid
+6: 
+6: No problems found
+6: -- run_test.py: return code 0
+6: -- run_test.py: verify result file '/home/tej/Documents/Maryland/Semester4/808x/HW/Nov21/beginner_tutorials/build/cpp_pubsub/test_results/cpp_pubsub/xmllint.xunit.xml'
+6/6 Test #6: xmllint ..........................   Passed    0.34 sec
+
+[0;32m100% tests passed[0;0m, 0 tests failed[0;0m out of 6
+
+Label Time Summary:
+cppcheck      =   0.07 sec*proc (1 test)
+flake8        =   0.12 sec*proc (1 test)
+gtest         =   4.43 sec*proc (1 test)
+lint_cmake    =   0.07 sec*proc (1 test)
+linter        =   0.69 sec*proc (5 tests)
+pep257        =   0.09 sec*proc (1 test)
+xmllint       =   0.34 sec*proc (1 test)
+
+Total Test time (real) =   5.12 sec
